@@ -6,7 +6,7 @@ import { RainbowKitProvider,  midnightTheme } from '@rainbow-me/rainbowkit';
 import { Chain, getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
-import { mainnet, polygon, optimism, arbitrum, base, zora } from 'wagmi/chains';
+import { mainnet, polygon, optimism, arbitrum, base, zora} from 'wagmi/chains';
 import HomePage from './pages/HomePage.tsx';
 import Quest1 from './pages/Quest1.tsx';
 import Quest2 from './pages/Quest2.tsx';
@@ -18,6 +18,8 @@ import Quest6 from './pages/Quest6.tsx';
 import Quest7 from './pages/Quest7.tsx';
 import Quest8 from './pages/Quest8.tsx';
 import AboutUs from './components/AboutUs.tsx';
+import HomePageTrack from './pages/HomePage_track.tsx';
+import AddressPage from './pages/AddressPage.tsx';
 const defichain: Chain = {
   id: 1130,
   name: 'DeFiChain DMC',
@@ -46,7 +48,7 @@ const defichain: Chain = {
   testnet: false,
 };
 const { chains, publicClient } = configureChains(
-  [defichain, mainnet, polygon, optimism, arbitrum, base, zora],
+  [defichain, mainnet,polygon, optimism, arbitrum, base, zora],
   [publicProvider()],
 );
 
@@ -88,6 +90,7 @@ const App = () => {
                 <Route path="/quest_8" element={<Quest8 />} />
                 <Route path="/voting" element = {<HomePagePower />} />
                 <Route path="/about" element = {<AboutUs />} />
+                <Route path='/explorer' element={!window.location.search.includes('?address=') ? <HomePageTrack /> : <AddressPage />}/>
               </Routes>
             </main>
           </Router>

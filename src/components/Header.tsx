@@ -25,7 +25,11 @@ const Header: FC = () => {
 
   const handleVoting = () => {
     navigate('/voting');
-  }
+  };
+  const handleExplorer = () => {
+    navigate('/explorer')
+  };
+
 
   const [isCheckInModalOpen, setCheckInModalOpen] = React.useState(false);
 
@@ -38,6 +42,8 @@ const Header: FC = () => {
     const storedXPCount = localStorage.getItem('xpCount');
     setXPCount(storedXPCount ? Number(storedXPCount) : defaultXPCount);
   }, [xpCount]);
+
+  
 
   return (
     <nav className="z-10 text-white fixed top-0 left-0 w-full">
@@ -66,6 +72,12 @@ const Header: FC = () => {
           </a>
         </div>
         <div className="flex items-center space-x-2">
+        <button
+                className="rounded-full bg-transparent text-white border border-purple-500 px-4 py-2 cursor-pointer"
+                onClick={handleExplorer}
+              >
+                Explorer
+        </button>
           {walletConnected && (
             <>
               <button
